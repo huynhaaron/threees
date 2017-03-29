@@ -8,10 +8,17 @@ let yPad = 10;
 let tileWidth = 100;
 let tileHeight = 100;
 
-window.addEventListener('keydown',this.keyDown,false);
 let board = new Array();
 let moved = false;
 
+//check if there are valid moves (false if not over, true if over)
+function gameOver() {
+  for (var i = 0; i < 3; i++) {
+    for (var j = 0; j < 3; j++) {
+      array[i]
+    }
+  }
+}
 
 //clears the board (does not populate grid)
 function clearBoard () {
@@ -89,24 +96,6 @@ function drawGrid() {
     }
   }
 }
-
-
-//Move using keyboard
-function keyDown(e) {
-  let code = e.keyCode;
-  if (!moved) {
-    switch (code) {
-        case 37: moveLeft(); moved = true; break; //Left key
-        case 38: moveUp(); moved = true; break; //Up key
-        case 39: moveRight(); moved = true;  break;//Right key
-        case 40: moveDown(); moved = true; break;//Down key
-        case 78: clearBoard(); populateBoard(); moved = true; break; // n key for new game
-        case 67: clearBoard(); moved = true; break; // c key for clear game
-    }
-  }
-  moved = false;
-}
-
 
 //Logic for merging
 function attempt_tile_move(i, j, target_i, target_j) {

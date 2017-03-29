@@ -5,10 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
   <link rel="stylesheet" type="text/css" href="./main.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
-  <!-- <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script> -->
   <script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
-  <script src="https://code.createjs.com/tweenjs-0.6.2.min.js"></script>
   <script type="text/javascript" src="grid.js"></script>
 
   <link rel="shortcut icon" href="https://res.cloudinary.com/booklog/image/upload/v1490738309/favicon-16x16_osvrpg.png" type="image/x-icon" />
@@ -20,6 +19,21 @@
   <canvas id="grid" width="400" height="400" style="border: 1px solid black;">
     Your browser is unable to support canvas
   </canvas>
+
+  <script>
+    $(document).keydown(function(e) {
+        switch(e.which) {
+            case 37: moveLeft(); break; // left
+            case 38: moveUp(); break;  // up
+            case 39: moveRight(); break; // right
+            case 40: moveDown(); break; // down
+            case 78: populateBoard(); break; // n - new game
+            case 67: clearBoard(); break; // c - clear game
+            default: return;
+        }
+        e.preventDefault();
+    });
+  </script>
 
 </body>
 </html>
