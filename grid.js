@@ -10,15 +10,27 @@ let tileHeight = 100;
 
 let board = new Array();
 let moved = false;
-let highScore = 0;
 
 //check if there are valid moves(false if over, true if possible to mv)
 function possibleToMove() {
   let result = false;
+  //edge cases ( literally )
+  for (let j = 0; j <= 3; j++) {
+    if (board[3][j].val === 0) {
+      return true;
+      break;
+    }
+  }
+  for (let i = 0; i <= 3; i++) {
+    if (board[i][3].val === 0) {
+      return true;
+      break;
+    }
+  }
+  //regular loop
   for (let j = 0; j <= 2; j++) {
     for (let i = 0; i <= 2; i++) {
-      //continue if board is empty, skip check
-      // console.log(`${i},${j}`);
+      //continue if cell is empty, you can move!!!
       if (board[i][j].val === 0) {
         return true;
       }
@@ -56,6 +68,29 @@ function possibleToMove() {
     }
   }
   return result;
+}
+
+//Gameover overlay
+function gameOver() {
+  score = function() {
+    let score = 0;
+    for (let j = 0; j <= 3; j++) {
+      for (let i = 0; i <= 3; i++) {
+        score += board[i][j].val;
+      }
+    }
+    return score;
+  }
+  let grid = document.getElementById('grid');
+  let ctx = grid.getContext('2d');
+  ctx.fillStyle = "rgba(255, 255, 255, 0.70)";
+  ctx.fillRect(0, 0, 400, 400);
+  //gameover
+  ctx.font = "30px Arial";
+  ctx.fillStyle = "black";
+  ctx.fillText("Game Over!", 125, 140);
+  //score
+  ctx.fillText(score(), 190, 190);
 }
 
 //clears the board (does not populate grid)
@@ -229,6 +264,9 @@ function moveUp() {
   }
   generateNewBottomRowTile();
   drawGrid();
+  if (!possibleToMove()) {
+    gameOver();
+  }
 }
 function moveDown() {
   for (let i = 0; i < 4; i++) {
@@ -241,6 +279,9 @@ function moveDown() {
   }
   generateNewTopRowTile();
   drawGrid();
+  if (!possibleToMove()) {
+    gameOver();
+  }
 }
 function moveLeft() {
   for (let j = 0; j <= 3 ; j++) {
@@ -253,6 +294,10 @@ function moveLeft() {
   }
   generateNewRightColTile();
   drawGrid();
+
+  if (!possibleToMove()) {
+    gameOver();
+  }
 }
 function moveRight() {
   for (let j = 0; j <= 3 ; j++) {
@@ -265,6 +310,10 @@ function moveRight() {
   }
   generateNewLeftColTile()
   drawGrid();
+
+  if (!possibleToMove()) {
+    gameOver();
+  }
 }
 
 //Helper functions
