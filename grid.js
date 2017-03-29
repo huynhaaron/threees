@@ -10,14 +10,52 @@ let tileHeight = 100;
 
 let board = new Array();
 let moved = false;
+let highScore = 0;
 
-//check if there are valid moves (false if not over, true if over)
-function gameOver() {
-  for (var i = 0; i < 3; i++) {
-    for (var j = 0; j < 3; j++) {
-      array[i]
+//check if there are valid moves(false if over, true if possible to mv)
+function possibleToMove() {
+  let result = false;
+  for (let j = 0; j <= 2; j++) {
+    for (let i = 0; i <= 2; i++) {
+      //continue if board is empty, skip check
+      // console.log(`${i},${j}`);
+      if (board[i][j].val === 0) {
+        return true;
+      }
+      //check if val is 1
+      if (board[i][j].val === 1) {
+        if (board[i+1][j].val === 2) {
+          result = true;
+          break;
+        } else if (board[i][j+1].val === 2) {
+          result = true;
+          break;
+        }
+      }
+      //check if val is  2
+      else if (board[i][j].val === 2) {
+        if (board[i+1][j].val === 1) {
+          result = true;
+          break;
+        } else if (board[i][j + 1].val === 1) {
+          result = true;
+          break;
+        }
+      }
+      //check for number > 2
+      else {
+        let currentval = board[i][j].val;
+        if (board[i+1][j].val === currentval) {
+          result = true;
+          break;
+        } else if (board[i][j + 1].val === currentval) {
+          result = true;
+          break;
+        }
+      }
     }
   }
+  return result;
 }
 
 //clears the board (does not populate grid)
