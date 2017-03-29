@@ -1,62 +1,65 @@
 //variables
-var cols = 4;
-var rows = 4;
-var xPad = 10;
-var yPad = 10;
-var startXOffset = 10;
-var startYOffset = 10;
-var tileWidth = 100;
-var tileHeight = 100;
+let cols = 4;
+let rows = 4;
+let xPad = 10;
+let yPad = 10;
+// let startXOffset = 10;
+// let startYOffset = 10;
+let tileWidth = 100;
+let tileHeight = 100;
 
-var board = new Array();
+window.addEventListener('keydown',this.keyDown,false);
+let board = new Array();
 let moved = false;
 
 
-for (let i = 0; i < cols; i++) {
-  board[i] = new Array();
-  for (let j = 0; j < rows; j++) {
-    board[i][j] = { val: 0};
-  }
-}
-
-starting_numbers1 = [1,1,1,2,2,2,3,3,3];
-starting_numbers2 = [1,1,1,1,2,2,3,3,3];
-starting_numbers3 = [1,1,1,2,2,3,3,3,3];
-starting_numbers4 = [1,1,2,2,2,3,3,3,3];
-
-function generateStartingNumbers () {
-  let options = [1,2,3];
-  let numbers = []
-  while (numbers.length < 9) {
-    let number = options[Math.floor(Math.random() * options.length)];
-    if (countItems(numbers,number) > 3) {
-      continue;
-    } else {
-      numbers.push(number);
+//clears the board (does not populate grid)
+function clearBoard () {
+  for (let i = 0; i < cols; i++) {
+    board[i] = new Array();
+    for (let j = 0; j < rows; j++) {
+      board[i][j] = { val: 0};
     }
   }
-  return shuffleArray(numbers);
-  console.log(numbers);
+  drawGrid();
+};
+
+//clears the board and generates a new board
+function populateBoard () {
+  clearBoard();
+  function generateStartingNumbers () {
+    let options = [1,2,3];
+    let numbers = []
+    while (numbers.length < 9) {
+      let number = options[Math.floor(Math.random() * options.length)];
+      if (countItems(numbers,number) > 3) {
+        continue;
+      } else {
+        numbers.push(number);
+      }
+    }
+    return shuffleArray(numbers);
+  }
+
+  let startingNumbers = generateStartingNumbers();
+
+  while (startingNumbers.length > 0) {
+    let i = Math.floor(Math.random() * 4);
+    let j = Math.floor(Math.random() * 4);
+    if (board[i][j].val === 0) {
+      board[i][j].val = startingNumbers.pop();
+    } else {
+      continue;
+    }
+  }
+  drawGrid();
 }
 
-
-
-
-
-board[0][0] = {val: 1};
-board[0][1] = {val: 2};
-board[1][0] = {val: 3};
-board[1][1] = {val: 3};
-board[3][3] = {val: 1};
-board[2][2] = {val: 2};
-
-
-console.log(board);
-
+//draw grid
 function drawGrid() {
-  var grid = document.getElementById('grid');
+  let grid = document.getElementById('grid');
   if (grid.getContext) {
-    var ctx = grid.getContext('2d');
+    let ctx = grid.getContext('2d');
 
     //draw background
     ctx.fillStyle = "#aaa0a0";
@@ -89,7 +92,6 @@ function drawGrid() {
 
 
 //Move using keyboard
-window.addEventListener('keydown',this.keyDown,false);
 function keyDown(e) {
   let code = e.keyCode;
   if (!moved) {
@@ -98,11 +100,12 @@ function keyDown(e) {
         case 38: moveUp(); moved = true; break; //Up key
         case 39: moveRight(); moved = true;  break;//Right key
         case 40: moveDown(); moved = true; break;//Down key
+        case 78: clearBoard(); populateBoard(); moved = true; break; // n key for new game
+        case 67: clearBoard(); moved = true; break; // c key for clear game
     }
   }
   moved = false;
 }
-
 
 
 //Logic for merging
@@ -189,8 +192,8 @@ function generateNewTopRowTile() {
 
 //Move direction
 function moveUp() {
-  for (var i = 0; i <= 3; i++) {
-    for (var j = 0; j <= 3; j++) {
+  for (let i = 0; i <= 3; i++) {
+    for (let j = 0; j <= 3; j++) {
       if (j === 0) {
         continue;
       }
@@ -201,8 +204,8 @@ function moveUp() {
   drawGrid();
 }
 function moveDown() {
-  for (var i = 0; i < 4; i++) {
-    for (var j = 3; j >= 0 ; j--) {
+  for (let i = 0; i < 4; i++) {
+    for (let j = 3; j >= 0 ; j--) {
       if (j === 3) {
         continue;
       }
@@ -213,8 +216,8 @@ function moveDown() {
   drawGrid();
 }
 function moveLeft() {
-  for (var i = 0; i <=3 ; i++) {
-    for (var j = 0; j <= 3 ; j++) {
+  for (let j = 0; j <= 3 ; j++) {
+    for (let i = 0; i <=3 ; i++) {
       if (i === 0) {
         continue;
       }
@@ -225,8 +228,8 @@ function moveLeft() {
   drawGrid();
 }
 function moveRight() {
-  for (var i = 3; i >=0; i--) {
-    for (var j = 0; j <= 3 ; j++) {
+  for (let j = 0; j <= 3 ; j++) {
+    for (let i = 3; i >=0; i--) {
       if (i === 3) {
         continue;
       }
@@ -239,16 +242,16 @@ function moveRight() {
 
 //Helper functions
 function shuffleArray(array) {
-    for (var i = array.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var temp = array[i];
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        let temp = array[i];
         array[i] = array[j];
         array[j] = temp;
     }
     return array;
 }
 function countItems(arr, item){
-    var count= 0, i;
+    let count= 0, i;
     while((i= arr.indexOf(item, i))!= -1){
         ++count;
         ++i;
