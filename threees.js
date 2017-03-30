@@ -11,7 +11,6 @@ let moved = false;
 let setOfTiles = shuffleArray([1,1,1,2,2,2,3,3,3]);
 let highScore = 0;
 
-
 //generates a new tile (to reduce string of the same number)
 function grabNewTile() {
   let tiles = setOfTiles;
