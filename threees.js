@@ -17,10 +17,8 @@ function grabNewTile() {
   if (setOfTiles.length <= 0) {
     setOfTiles = shuffleArray([1,1,1,2,2,2,3,3,3]) ;
     tiles = shuffleArray(setOfTiles);
-    console.log(tiles);
     return tiles.shift();
   } else {
-    console.log(tiles);
     return tiles.shift();
   }
 }
@@ -139,7 +137,7 @@ function gameOver() {
   ctx.fillStyle = "rgba(255, 255, 255, 0.70)";
   ctx.fillRect(0, 0, 400, 400);
   //gameover
-  ctx.font = "30px Arial";
+  ctx.font = "31px Kavoon";
   ctx.fillStyle = "black";
   ctx.fillText("Game Over!", 125, 215);
 }
@@ -209,7 +207,7 @@ function drawGrid() {
         }
         ctx.strokeRect((i * 100), (j * 100), tileWidth, tileHeight);
         ctx.fillRect((i * 100), (j * 100), tileWidth, tileHeight);
-        ctx.font = "30px Arial";
+        ctx.font = "31px Kavoon";
         ctx.fillStyle = "black";
         if (board[i][j].val === 0) {
           ctx.fillText(" " , (i * 100) + 40, (j * 100 ) + 55);
@@ -219,10 +217,12 @@ function drawGrid() {
       }
     }
 
+    ctx.update;
+
     //draw next tile
-    ctx.font = "25px Arial";
+    ctx.font = "18px";
     ctx.fillStyle = "black";
-    ctx.fillText("Next Tile:", 60, 440 );
+    ctx.fillText("Next Tile:", 30, 440 );
     //logic for next tile
     if (setOfTiles[0] === 1) {
       ctx.fillStyle = '#66CCFF';
@@ -233,16 +233,16 @@ function drawGrid() {
     }
     ctx.strokeRect(180, 410, 40, 40);
     ctx.fillRect(180, 410, 40, 40);
+    //draw score
+    ctx.font = "18px";
+    ctx.fillStyle = "black";
+    ctx.fillText("Score: ", 230 , 440);
+    ctx.fillText(score(), 330 , 440 );
     //draw high score
-    ctx.font = "25px Arial";
+    ctx.font = "18px";
     ctx.fillStyle = "black";
     ctx.fillText("High Score: ", 10 , 480 );
-    ctx.fillText(highScore, 150 , 480 );
-    //draw score
-    ctx.font = "25px Arial";
-    ctx.fillStyle = "black";
-    ctx.fillText("Score: ", 250 , 480 );
-    ctx.fillText(score(), 350 , 480 );
+    ctx.fillText(highScore, 200 , 480 );
   }
 }
 
