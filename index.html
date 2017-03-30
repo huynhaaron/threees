@@ -15,26 +15,21 @@
   <title>Threees</title>
 </head>
 <body onload="populateBoard();" style="font-family: 'Kavoon';">
+  <div>
+    <h1 class="logo">THREEES</h1>
+    <canvas id="grid" width="400" height="500" style="border: 1px solid black;">
+      Your browser is unable to support canvas
+    </canvas>
+  </div>
 
-  <h1>THREEES</h1>
-  <canvas id="grid" width="400" height="500" style="border: 1px solid black;">
-    Your browser is unable to support canvas
-  </canvas>
+  <div class="controls">
+    <div> Controls </div>
+    <div id="up">↑</div>
+    <div><div id="left">←</div> <div id="right">→</div></div>
+    <div id="down">↓</div>
+  </div>
+  <script src="./javascript/controls.js"></script>
 
-  <script>
-    $(document).keydown(function(e) {
-        switch(e.which) {
-            case 37: moveLeft(); break; // left
-            case 38: moveUp(); break;  // up
-            case 39: moveRight(); break; // right
-            case 40: moveDown(); break; // down
-            case 78: populateBoard(); break; // n - new game
-            case 67: clearBoard(); break; // c - clear game
-            default: return;
-        }
-        e.preventDefault();
-    });
-  </script>
 
 </body>
 </html>

@@ -140,6 +140,7 @@ function gameOver() {
   ctx.font = "31px Kavoon";
   ctx.fillStyle = "black";
   ctx.fillText("Game Over!", 125, 215);
+  isHighScore();
 }
 
 //clears the board (does not populate grid)
