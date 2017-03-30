@@ -1,8 +1,6 @@
 //variables
 let cols = 4;
 let rows = 4;
-let xPad = 10;
-let yPad = 10;
 // let startXOffset = 10;
 // let startYOffset = 10;
 let tileWidth = 100;
@@ -10,6 +8,23 @@ let tileHeight = 100;
 
 let board = new Array();
 let moved = false;
+let setOfTiles = shuffleArray([1,1,1,2,2,2,3,3,3]);
+let highScore = 0;
+
+
+//generates a new tile (to reduce string of the same number)
+function grabNewTile() {
+  let tiles = setOfTiles;
+  if (setOfTiles.length <= 0) {
+    setOfTiles = shuffleArray([1,1,1,2,2,2,3,3,3]) ;
+    tiles = shuffleArray(setOfTiles);
+    console.log(tiles);
+    return tiles.shift();
+  } else {
+    console.log(tiles);
+    return tiles.shift();
+  }
+}
 
 //check if there are valid moves(false if over, true if possible to mv)
 function possibleToMove() {
@@ -70,17 +85,34 @@ function possibleToMove() {
   return result;
 }
 
+//score
+function score() {
+  let score = 0;
+  for (let j = 0; j <= 3; j++) {
+    for (let i = 0; i <= 3; i++) {
+      score += board[i][j].val;
+    }
+  }
+  return score;
+}
+
+//high score
+function isHighScore() {
+  if (score() >= highScore) {
+    highScore = score();
+  }
+}
 //Gameover overlay
 function gameOver() {
-  score = function() {
-    let score = 0;
-    for (let j = 0; j <= 3; j++) {
-      for (let i = 0; i <= 3; i++) {
-        score += board[i][j].val;
-      }
-    }
-    return score;
-  }
+  // score = function() {
+  //   let score = 0;
+  //   for (let j = 0; j <= 3; j++) {
+  //     for (let i = 0; i <= 3; i++) {
+  //       score += board[i][j].val;
+  //     }
+  //   }
+  //   return score;
+  // }
   let grid = document.getElementById('grid');
   let ctx = grid.getContext('2d');
   ctx.fillStyle = "rgba(255, 255, 255, 0.70)";
@@ -91,6 +123,7 @@ function gameOver() {
   ctx.fillText("Game Over!", 125, 140);
   //score
   ctx.fillText(score(), 190, 190);
+  isHighScore();
 }
 
 //clears the board (does not populate grid)
@@ -142,8 +175,8 @@ function drawGrid() {
     let ctx = grid.getContext('2d');
 
     //draw background
-    ctx.fillStyle = "#aaa0a0";
-    ctx.fillRect (0,0, grid.width, grid.height);
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect (0,0, grid.width , grid.height);
 
     //draw grid and tiles
     for (let i = 0; i < cols; i++) {
@@ -167,6 +200,32 @@ function drawGrid() {
         }
       }
     }
+
+    //draw next tile
+    ctx.font = "25px Arial";
+    ctx.fillStyle = "black";
+    ctx.fillText("Next Tile:", 60, 440 );
+    //logic for next tile
+    if (setOfTiles[0] === 1) {
+      ctx.fillStyle = '#66CCFF';
+    } else if (setOfTiles[0] === 2) {
+      ctx.fillStyle = '#FF6680';
+    } else {
+    ctx.fillStyle = '#FFFFFF';
+    }
+    ctx.strokeRect(180, 410, 40, 40);
+    ctx.fillRect(180, 410, 40, 40);
+
+    //draw high score
+    ctx.font = "25px Arial";
+    ctx.fillStyle = "black";
+    ctx.fillText("High Score: ", 10 , 480 );
+    ctx.fillText(highScore, 150 , 480 );
+    //draw score
+    ctx.font = "25px Arial";
+    ctx.fillStyle = "black";
+    ctx.fillText("Score: ", 250 , 480 );
+    ctx.fillText(score(), 350 , 480 );
   }
 }
 
@@ -208,7 +267,7 @@ function generateNewRightColTile() {
   }
   if (empty_cells.length > 0) {
     let selected_row = empty_cells[Math.floor(Math.random()*empty_cells.length)];
-    let value = Math.floor(Math.random() * 3) + 1;
+    let value = grabNewTile();
     board[3][selected_row].val = value;
   }
 }
@@ -221,7 +280,7 @@ function generateNewLeftColTile() {
   }
   if (empty_cells.length > 0) {
     let selected_row = empty_cells[Math.floor(Math.random()*empty_cells.length)];
-    let value = Math.floor(Math.random() * 3) + 1;
+    let value = grabNewTile();
     board[0][selected_row].val = value;
   }
 }
@@ -234,7 +293,7 @@ function generateNewBottomRowTile() {
   }
   if (empty_cells.length > 0) {
     let selected_col = empty_cells[Math.floor(Math.random()*empty_cells.length)];
-    let value = Math.floor(Math.random() * 3) + 1
+    let value = grabNewTile();
     board[selected_col][3].val = value;
   }
 }
@@ -247,7 +306,7 @@ function generateNewTopRowTile() {
   }
   if (empty_cells.length > 0) {
     let selected_col = empty_cells[Math.floor(Math.random()*empty_cells.length)];
-    let value = Math.floor(Math.random() * 3) + 1
+    let value = grabNewTile();
     board[selected_col][0].val = value;
   }
 }
