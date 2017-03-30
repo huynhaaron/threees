@@ -28,19 +28,50 @@ function grabNewTile() {
 //check if there are valid moves(false if over, true if possible to mv)
 function possibleToMove() {
   let result = false;
-  //edge cases ( literally )
-  for (let j = 0; j <= 3; j++) {
-    if (board[3][j].val === 0) {
-      return true;
-      break;
-    }
-  }
-  for (let i = 0; i <= 3; i++) {
+  //check bottom numbers
+  for (let i = 0; i <= 2; i++) {
     if (board[i][3].val === 0) {
       return true;
       break;
+    } else if ((board[i][3].val === 1) && (board[i+1][3].val === 2) ) {
+      return true;
+      break;
+    } else if ((board[i][3].val) === 2 && (board[i+1][3].val === 1) ) {
+      return true;
+      break;
+    } else if (board[i][3].val >= 3) {
+      if ((board[i][3].val) === (board[i+1][3].val)) {
+        return true;
+        break;
+      }
     }
   }
+  //check right numbers
+  for (let j = 0; j <= 2; j++) {
+    if (board[3][j].val === 0) {
+      return true;
+      break;
+    } else if ((board[3][j].val === 1) && (board[3][j+1].val === 2) ) {
+      return true;
+      break;
+    } else if ((board[3][j].val) === 2 && (board[3][j+1].val === 1) ) {
+      return true;
+      break;
+    } else if (board[3][j].val >= 3) {
+      if ((board[3][j].val) === (board[3][j+1].val)) {
+        return true;
+        break;
+      }
+    }
+  }
+
+  for (let j = 0; j <= 2; j++) {
+    if (board[3][j].val === (board[3][j].val * 2)) {
+      return true;
+      break;
+    }
+  }
+
   //regular loop
   for (let j = 0; j <= 2; j++) {
     for (let i = 0; i <= 2; i++) {
@@ -103,15 +134,6 @@ function isHighScore() {
 }
 //Gameover overlay
 function gameOver() {
-  // score = function() {
-  //   let score = 0;
-  //   for (let j = 0; j <= 3; j++) {
-  //     for (let i = 0; i <= 3; i++) {
-  //       score += board[i][j].val;
-  //     }
-  //   }
-  //   return score;
-  // }
   let grid = document.getElementById('grid');
   let ctx = grid.getContext('2d');
   ctx.fillStyle = "rgba(255, 255, 255, 0.70)";
@@ -119,10 +141,7 @@ function gameOver() {
   //gameover
   ctx.font = "30px Arial";
   ctx.fillStyle = "black";
-  ctx.fillText("Game Over!", 125, 140);
-  //score
-  ctx.fillText(score(), 190, 190);
-  isHighScore();
+  ctx.fillText("Game Over!", 125, 215);
 }
 
 //clears the board (does not populate grid)
@@ -214,7 +233,6 @@ function drawGrid() {
     }
     ctx.strokeRect(180, 410, 40, 40);
     ctx.fillRect(180, 410, 40, 40);
-
     //draw high score
     ctx.font = "25px Arial";
     ctx.fillStyle = "black";
