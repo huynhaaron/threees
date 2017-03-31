@@ -82,6 +82,11 @@ body {
   -webkit-user-select: none; /* Safari */
   -moz-user-select: none; /* Firefox */
 }
+
+#control-header {
+  position: relative;
+  left: 10px;
+}
 #controls div:hover {
   cursor: pointer;
 }
@@ -95,7 +100,7 @@ body {
 
 #controls #right {
   position: relative;
-  left: 89px;
+  left: 90px;
   bottom: 32px;
 }
 
