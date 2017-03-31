@@ -53,7 +53,7 @@ table {
 body {
   background: #ffffff;
   color: #AAAAAA;
-  font-family: 'Kavoon', sans-serif;
+  font-family: 'Kavoon', sans-serif, Helvetica, arial , san-serif;
   margin: 0;
   padding: 0;
   margin: auto;
@@ -121,4 +121,14 @@ body {
 #clearboard {
   position: relative;
   top: 10px;
+}
+
+.credits {
+  position: relative;
+  top: 10px;
+  width: 400px;
+}
+
+.credits a {
+  color: inherit;
 }
