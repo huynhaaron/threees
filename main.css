@@ -103,3 +103,13 @@ body {
 #controls #left-right {
   height: 40px;
 }
+
+#newgame {
+  position: relative;
+  top: 10px;
+}
+
+#clearboard {
+  position: relative;
+  top: 10px;
+}

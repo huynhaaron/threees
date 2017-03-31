@@ -5,7 +5,7 @@
 [Threes](http://asherv.com/threes/) is designed by Asher Vollmer.
 
 
-Threes is a numbers game in a 4 by 4 grid. You can swipe the grid up, down, left and right.  The cells merge and sum up if :
+Threes is a numbers game in a 4 by 4 grid. You can merge the grid up, down, left and right.  The cells merge and sum up if :
 
 1) The tiles are 1 & 2
 
@@ -13,7 +13,7 @@ Threes is a numbers game in a 4 by 4 grid. You can swipe the grid up, down, left
 
 else, the tiles stay where they are.
 
-Moving tiles in one direction will add one new tile to the bottom row or right column depending on which way the user moves the tiles. New tiles can be 1, 2, or 3 (no other possible numbers will spawn).
+Moving tiles in one direction will add one new tile to the bottom row or right column depending on which way the user moves the tiles. New tiles can be 1, 2, 3, or a wild card that is the highest value on the board divided by 2.
 
 
 
@@ -33,8 +33,7 @@ In addition, this project will include:
 
 ### Wireframes
 
-This app will consist of a single screen with game board, and nav links to the Github, my LinkedIn,
-and the Gameplay/Rules image.  Game controls will include Up, Down, Left, Right, and Space (space to restart the game or new game). The main part is the grid, to the left or top will be a next tile and the score. Rules will be underneath the grid.
+This app will consist of a single screen with game board, and nav links to the Github, my LinkedIn, and the Gameplay/Rules image.  Game controls will include Up, Down, Left, Right, N for New game and C for Clear Board. The main part is the grid, to the left or top will be a next tile and the score. Rules will be underneath the grid.
 LinkedIn, Github, About, will be used as a footer.
 
 ![wireframes](https://res.cloudinary.com/booklog/image/upload/v1490590354/Threees_iwdukk.png)
@@ -44,13 +43,10 @@ LinkedIn, Github, About, will be used as a footer.
 This project will be implemented with the following technologies:
 
 - Vanilla JavaScript and `jquery` for overall structure and game logic,
-- `Easel.js`(?) with `HTML5 Canvas` for DOM manipulation and rendering,
+- `HTML5 Canvas` for DOM manipulation and rendering,
 
 
-`board.js`: this script will handle the logic for creating and updating the necessary `Easel.js` elements and rendering them to the DOM.
-
-
-`tile.js`: this lightweight script will house the constructor and update functions for the `Tile` objects.  Each `Tile` will contain a `value` (hexagon, triangle, or square).
+`threees.js`: this script will handle the logic for creating and updating the necessary tiles
 
 ### Implementation Timeline
 

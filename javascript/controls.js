@@ -24,3 +24,10 @@ $( "#left" ).click(function() {
 $( "#right" ).click(function() {
   moveRight();
 });
+
+$( "#newgame" ).click(function() {
+  populateBoard();
+});
+$( "#clearboard" ).click(function() {
+  clearBoard();
+});

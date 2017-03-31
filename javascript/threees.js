@@ -11,30 +11,6 @@ let moved = false;
 let setOfTiles = shuffleArray([1,1,1,2,2,2,3,3,3]);
 let highScore = 0;
 
-//generates a new tile (to reduce string of the same number)
-function grabNewTile() {
-  let tiles = setOfTiles;
-  if (setOfTiles.length <= 1) {
-    setOfTiles = shuffleArray([1,1,1,2,2,2,3,3,3]);
-    setOfTiles.push(wildCard());
-    tiles = shuffleArray(setOfTiles);
-    return tiles.shift();
-  } else {
-    return tiles.shift();
-  }
-}
-
-function wildCard() {
-  let highestCard = 2;
-  for (let j = 0; j <= 3; j++) {
-    for (let i = 0; i <= 3; i++) {
-      if (board[i][j].val > highestCard){
-        highestCard = board[i][j].val;
-      }
-    }
-  }
-  return highestCard/2;
-}
 
 //check if there are valid moves(false if over, true if possible to mv)
 function possibleToMove() {
@@ -149,11 +125,11 @@ function gameOver() {
   let ctx = grid.getContext('2d');
   ctx.fillStyle = "rgba(255, 255, 255, 0.70)";
   ctx.fillRect(0, 0, 400, 400);
+  isHighScore();
   //gameover
   ctx.font = "31px Kavoon";
   ctx.fillStyle = "black";
   ctx.fillText("Game Over!", 125, 215);
-  isHighScore();
 }
 
 //clears the board (does not populate grid)
@@ -230,8 +206,6 @@ function drawGrid() {
         }
       }
     }
-
-    ctx.update;
 
     //draw next tile
     ctx.font = "18px";
@@ -342,6 +316,32 @@ function generateNewTopRowTile() {
     let value = grabNewTile();
     board[selected_col][0].val = value;
   }
+}
+
+//generates a new tile (to reduce string of the same number)
+function grabNewTile() {
+  let tiles = setOfTiles;
+  if (setOfTiles.length <= 1) {
+    setOfTiles = shuffleArray([1,1,1,2,2,2,3,3,3]);
+    setOfTiles.push(wildCard());
+    tiles = shuffleArray(setOfTiles);
+    return tiles.shift();
+  } else {
+    return tiles.shift();
+  }
+}
+
+//wild card functionality
+function wildCard() {
+  let highestCard = 2;
+  for (let j = 0; j <= 3; j++) {
+    for (let i = 0; i <= 3; i++) {
+      if (board[i][j].val > highestCard){
+        highestCard = board[i][j].val;
+      }
+    }
+  }
+  return highestCard/2;
 }
 
 //Move direction
