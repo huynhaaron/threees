@@ -1,5 +1,6 @@
 ## Threees
 
+[Play now!](https://threees.herokuapp.com/)
 ## Game summary
 
 [Threes](http://asherv.com/threes/) is designed by Asher Vollmer. The game is available to download on iOS [here](https://itunes.apple.com/us/app/threes/id779157948?mt=8).
