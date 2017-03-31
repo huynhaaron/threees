@@ -18,7 +18,7 @@ Moving tiles in one direction will add one new tile to the bottom row or right c
 
 Screen shot:
 
-<img src="http://res.cloudinary.com/booklog/image/upload/e_shadow:40/v1490977474/Screen_Shot_2017-03-31_at_9.23.58_AM_oyacm1.png" alt="screenshot">
+<img src="http://res.cloudinary.com/booklog/image/upload/v1490977474/Screen_Shot_2017-03-31_at_9.23.58_AM_oyacm1.png" alt="screenshot">
 
 ## Features
 
@@ -33,7 +33,7 @@ Screen shot:
 
 4) Automatic check for Game Over
 
-<img src="http://res.cloudinary.com/booklog/image/upload/e_shadow:40/v1490983405/Screen_Shot_2017-03-31_at_11.02.54_AM_wqxan2.png" alt="game over" width="300px">
+<img src="http://res.cloudinary.com/booklog/image/upload/v1490983405/Screen_Shot_2017-03-31_at_11.02.54_AM_wqxan2.png" alt="game over" width="300px">
 
 
 
