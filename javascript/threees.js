@@ -1,3 +1,5 @@
+require('newrelic');
+
 //variables
 let cols = 4;
 let rows = 4;
