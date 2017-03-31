@@ -14,7 +14,7 @@ let highScore = 0;
 //generates a new tile (to reduce string of the same number)
 function grabNewTile() {
   let tiles = setOfTiles;
-  if (setOfTiles.length <= 0) {
+  if (setOfTiles.length <= 1) {
     setOfTiles = shuffleArray([1,1,1,2,2,2,3,3,3]) ;
     tiles = shuffleArray(setOfTiles);
     return tiles.shift();
@@ -222,7 +222,7 @@ function drawGrid() {
 
     //draw next tile
     ctx.font = "18px";
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "#AAAAAA";
     ctx.fillText("Next Tile:", 30, 440 );
     //logic for next tile
     if (setOfTiles[0] === 1) {
@@ -234,14 +234,16 @@ function drawGrid() {
     }
     ctx.strokeRect(180, 410, 40, 40);
     ctx.fillRect(180, 410, 40, 40);
+    ctx.fillStyle = "black";
+    ctx.fillText(setOfTiles[0], 193, 440);
     //draw score
     ctx.font = "18px";
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "#AAAAAA";
     ctx.fillText("Score: ", 230 , 440);
     ctx.fillText(score(), 330 , 440 );
     //draw high score
     ctx.font = "18px";
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "#AAAAAA";
     ctx.fillText("High Score: ", 10 , 480 );
     ctx.fillText(highScore, 200 , 480 );
   }

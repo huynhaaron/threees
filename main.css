@@ -77,6 +77,10 @@ body {
 
 #controls div {
   position: relative;
+  user-select: none;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
 }
 #controls div:hover {
   cursor: pointer;
@@ -91,8 +95,8 @@ body {
 
 #controls #right {
   position: relative;
-  left: 78px;
-  bottom: 40px;
+  left: 89px;
+  bottom: 32px;
 }
 
 
