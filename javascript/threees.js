@@ -15,12 +15,25 @@ let highScore = 0;
 function grabNewTile() {
   let tiles = setOfTiles;
   if (setOfTiles.length <= 1) {
-    setOfTiles = shuffleArray([1,1,1,2,2,2,3,3,3]) ;
+    setOfTiles = shuffleArray([1,1,1,2,2,2,3,3,3]);
+    setOfTiles.push(wildCard());
     tiles = shuffleArray(setOfTiles);
     return tiles.shift();
   } else {
     return tiles.shift();
   }
+}
+
+function wildCard() {
+  let highestCard = 2;
+  for (let j = 0; j <= 3; j++) {
+    for (let i = 0; i <= 3; i++) {
+      if (board[i][j].val > highestCard){
+        highestCard = board[i][j].val;
+      }
+    }
+  }
+  return highestCard/2;
 }
 
 //check if there are valid moves(false if over, true if possible to mv)
