@@ -64,15 +64,19 @@ body {
 }
 
 .sidebar {
-  margin-top: 40px;
+  margin-top: 30px;
   margin-left: 10px;
-  font-size: 40px;
+  font-size: 40  px;
 }
 
 .logo {
   font-size: 50px;
   margin-left: 90px;
   margin-bottom: 10px;
+}
+
+.links {
+  margin-top:70px;
 }
 
 #controls div {

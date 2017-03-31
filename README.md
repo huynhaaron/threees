@@ -1,11 +1,11 @@
 ## Threees
 
-### Background
+## Game summary
 
-[Threes](http://asherv.com/threes/) is designed by Asher Vollmer.
+[Threes](http://asherv.com/threes/) is designed by Asher Vollmer. The game is available to download on iOS [here](https://itunes.apple.com/us/app/threes/id779157948?mt=8).
 
 
-Threes is a numbers game in a 4 by 4 grid. You can merge the grid up, down, left and right.  The cells merge and sum up if :
+Threes is a numbers game in a 4 by 4 grid. You can merge the grid up, down, left and right.  The tiles merge and sum up if :
 
 1) The tiles are 1 & 2
 
@@ -15,65 +15,22 @@ else, the tiles stay where they are.
 
 Moving tiles in one direction will add one new tile to the bottom row or right column depending on which way the user moves the tiles. New tiles can be 1, 2, 3, or a wild card that is the highest value on the board divided by 2.
 
+Screen shot:
+![screenshot](http://res.cloudinary.com/booklog/image/upload/v1490977474/Screen_Shot_2017-03-31_at_9.23.58_AM_oyacm1.png)
+
+## Features
+
+1) On screen controls or keyboard controls
+
+2) Ability to see the next tile
+
+3) Automatic check for Game Over
+
+4) Current score and High score
 
 
-### Functionality & MVP  
 
-Users will be able to:
-
-- [ ] Swipe and move tiles
-- [ ] Know what tile will appear next
-- [ ] See the total score the user obtained
-- [ ] Restart the game when the game is over
-
-In addition, this project will include:
-
-- [ ] Rules on how to play the game
-- [ ] A production Readme
-
-### Wireframes
-
-This app will consist of a single screen with game board, and nav links to the Github, my LinkedIn, and the Gameplay/Rules image.  Game controls will include Up, Down, Left, Right, N for New game and C for Clear Board. The main part is the grid, to the left or top will be a next tile and the score. Rules will be underneath the grid.
-LinkedIn, Github, About, will be used as a footer.
-
-![wireframes](https://res.cloudinary.com/booklog/image/upload/v1490590354/Threees_iwdukk.png)
-
-### Architecture and Technologies
-
-This project will be implemented with the following technologies:
-
-- Vanilla JavaScript and `jquery` for overall structure and game logic,
-- `HTML5 Canvas` for DOM manipulation and rendering,
-
-
-`threees.js`: this script will handle the logic for creating and updating the necessary tiles
-
-### Implementation Timeline
-
-**Day 1**: Setup all necessary Node modules, including getting webpack up and running and `Easel.js` installed.  Create `webpack.config.js` as well as `package.json`.  Learn the basics of `Easel.js`.  Goals for the day:
-
-- Learn enough `Easel.js` to render an object to the `Canvas` element, mainly the grid and rules.
-- Add some styling to the grid
-
-**Day 2**: Dedicate this day to learning the `Easel.js` API.  First, build out the `Tile` object to connect to the `Board` object.  Then, use `board.js` to create and render at least the square grid.  Goals for the day:
-
-- Complete the `tile.js` module (constructor, update functions)
-- Render a square grid to the `Canvas` using `Easel.js`
-- Add some styling to the tiles
-
-
-**Day 3**: Dedicate this day to move the tiles and create the losing conditions.
-
-- Complete the movement of the grids and have it mapped to the keys.
-- Add more styling to the page.
-
-
-**Day 4**: Dedicate this day to last minute styling and uploading to a live website.
-
-- Bug checks and final checks to make sure everything runs.
-- Clean up README and refactor code.
-
-### Bonus features
-
-- [ ] High scores for current session
+## Future Direction for the Project
+- [ ] Add some animations
+- [ ] Add mobile swipe controls
 - [ ] Night theme or Dark theme
