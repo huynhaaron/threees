@@ -67,7 +67,7 @@ body {
 
 .sidebar {
   margin-top: 30px;
-  margin-left: 10px;
+  margin-left: 50px;
   font-size: 40px;
 }
 
@@ -117,6 +117,7 @@ body {
 
 #controls #right {
   position: relative;
+	max-width: 30px;
   left: 90px;
   bottom: 32px;
 }
